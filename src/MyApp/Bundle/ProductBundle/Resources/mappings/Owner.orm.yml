@@ -1,0 +1,13 @@
+MyApp\Domain\Owner:
+  type: entity
+  table: owners
+  id:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+      length: 255

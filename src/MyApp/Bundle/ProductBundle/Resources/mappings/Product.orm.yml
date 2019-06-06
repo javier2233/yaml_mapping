@@ -1,0 +1,25 @@
+MyApp\Domain\Product:
+  type: entity
+  table: products
+  id:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+      length: 255
+    price:
+      type: integer
+    description:
+      type: string
+      length: 255
+      nullable: true
+  manyToOne:
+    owner:
+      targetEntity: Owner
+      joinColumn:
+        name: owner
+        referencedColumnName: id

@@ -1,0 +1,34 @@
+parameters:
+
+services:
+  myapp.repository.owner:
+    class: MyApp\Bundle\ProductBundle\Repository\MySQLOwnerRepository
+    public: true
+    arguments:
+      - "@doctrine.orm.default_entity_manager"
+
+  myapp.repository.product:
+    class: MyApp\Bundle\ProductBundle\Repository\MySQLProductRepository
+    public: true
+    arguments:
+      - "@doctrine.orm.default_entity_manager"
+
+  owner.command_handler.create_owner:
+    class: MyApp\Application\CommandHandler\Owner\CreateOwnerHandler
+    public: true
+    arguments:
+      - "@myapp.repository.owner"
+
+  owner.command_handler.get_owner:
+    class: MyApp\Application\CommandHandler\Owner\GetOwnerHandler
+    public: true
+    arguments:
+      - "@myapp.repository.owner"
+
+
+  product.command_handler.create_product:
+    class: MyApp\Application\CommandHandler\Product\CreateProductHandler
+    public: true
+    arguments:
+      - "@myapp.repository.product"
+      - '@owner.command_handler.get_owner'
